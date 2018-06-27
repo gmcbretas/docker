@@ -2,11 +2,10 @@ FROM centos:5
 LABEL maintainer="Shaun Jackman <sjackman@gmail.com>"
 LABEL name="Linuxbrew/centos5"
 
-# Fix yum. CentOS 5 is end-of-life as of 2017-03-31.
-RUN urlgrabber https://gist.github.com/sjackman/132b65c33b62a89c45671e9c605025bc/raw/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo \
-	&& urlgrabber https://gist.github.com/sjackman/132b65c33b62a89c45671e9c605025bc/raw/libselinux.repo /etc/yum.repos.d/libselinux.repo \
-	&& yum install -y curl gcc gcc44 gcc44-c++ make sudo which \
-	&& yum clean all
+ADD https://gist.github.com/sjackman/132b65c33b62a89c45671e9c605025bc/raw/CentOS-Base.repo /etc/yum.repos.d/
+ADD	https://gist.github.com/sjackman/132b65c33b62a89c45671e9c605025bc/raw/libselinux.repo /etc/yum.repos.d/
+RUN	yum install -y curl gcc gcc44 gcc44-c++ make sudo which
+RUN	yum clean all
 
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8 \
 	&& useradd -m -s /bin/bash linuxbrew \
