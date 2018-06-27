@@ -21,8 +21,8 @@ ENV PATH=/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH \
 # Install Linuxbrew.
 # Create symlinks for GCC 4.4.
 # Install a recent version of file that supports --print0.
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)" \
-	&& ln -s /usr/bin/gcc44 ~/.linuxbrew/bin/gcc-4.4 \
-	&& ln -s /usr/bin/g++44 ~/.linuxbrew/bin/g++-4.4 \
-	&& HOMEBREW_BUILD_FROM_SOURCE=1 HOMEBREW_NO_AUTO_UPDATE=1 brew install file-formula \
-	&& brew config
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+RUN	ln -s /usr/bin/gcc44 ~/.linuxbrew/bin/gcc-4.4
+RUN	ln -s /usr/bin/g++44 ~/.linuxbrew/bin/g++-4.4
+RUN	HOMEBREW_BUILD_FROM_SOURCE=1 HOMEBREW_NO_AUTO_UPDATE=1 brew install file-formula
+RUN	brew config
